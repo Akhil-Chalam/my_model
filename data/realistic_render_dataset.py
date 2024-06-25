@@ -23,7 +23,7 @@ class realistic_render_dataset(torch.utils.data.Dataset):
         self.real, self.rendered, self.masks, self.paths = self.list_images()
 
     def __len__(self,):
-        return len(self.images)
+        return len(self.real)
 
     def __getitem__(self, idx):
         real = Image.open(os.path.join(self.paths[0], self.real[idx])).convert('RGB')
