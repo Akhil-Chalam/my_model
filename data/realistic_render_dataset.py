@@ -76,7 +76,7 @@ class realistic_render_dataset(torch.utils.data.Dataset):
         rendered = rendered.crop((crop_x, crop_y, crop_x + self.opt.crop_size, crop_y + self.opt.crop_size))
         mask = mask.crop((crop_x, crop_y, crop_x + self.opt.crop_size, crop_y + self.opt.crop_size))
         # flip
-        if not (self.opt.phase == "test" or self.opt.no_flip or self.for_training):
+        if not (self.opt.phase == "test" or self.opt.no_flip):
             if random.random() < 0.5:
                 real = TR.functional.hflip(real)
                 rendered = TR.functional.hflip(rendered)
