@@ -58,6 +58,7 @@ class realistic_render_dataset(torch.utils.data.Dataset):
                 
 
         for i in range(len(real_list)):
+            pdb.set_trace()
             assert os.path.splitext(rendered_list[i])[0].split("_")[1] == os.path.splitext(mask_list[i])[0].split("_")[2], '%s and %s are not matching' % (rendered_list[i], mask_list[i])
             assert os.path.splitext(rendered_list[i])[0].split("_")[2] == os.path.splitext(mask_list[i])[0].split("_")[3], '%s and %s are not matching' % (rendered_list[i], mask_list[i])
         return real_list, rendered_list, mask_list (path_real, path_rendered, path_mask)
