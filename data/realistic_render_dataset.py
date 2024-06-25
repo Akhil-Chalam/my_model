@@ -4,9 +4,10 @@ from torchvision import transforms as TR
 import os
 from PIL import Image
 import numpy as np
+import pdb
 
 
-class Ade20kDataset(torch.utils.data.Dataset):
+class realistic_render_dataset(torch.utils.data.Dataset):
     def __init__(self, opt, mode):
         if mode == "validation" or mode == "test":
             opt.load_size = 256
@@ -53,11 +54,12 @@ class Ade20kDataset(torch.utils.data.Dataset):
             real_list = real_list[12452:14008]
         elif self.mode == "test":
             rendered_list = rendered_list[14008:15565]
-            mask_list = mask_list[12452:15565]
-            real_list = real_list[12452:15565]
+            mask_list = mask_list[14008:15565]
+            real_list = real_list[14008:15565]
                 
 
         for i in range(len(real_list)):
+            pdb.set_trace()
             assert os.path.splitext(real_list[i])[1].split("_")[2] == os.path.splitext(mask_list[i])[1].split("_")[2], '%s and %s are not matching' % (real_list[i], mask_list[i])
             assert os.path.splitext(real_list[i])[1].split("_")[3] == os.path.splitext(mask_list[i])[1].split("_")[3], '%s and %s are not matching' % (real_list[i], mask_list[i])
         return real_list, rendered_list, mask_list (path_real, path_rendered, path_mask)
