@@ -4,7 +4,7 @@ import torch
 
 def get_dataloaders(opt):
     dataset_name   = opt.dataroot+"_dataset"
-    file = __import__("dataloaders."+dataset_name)
+    file = __import__("data."+dataset_name)
     dataset_train = file.__dict__[dataset_name].__dict__[dataset_name](opt, mode = "training")
     dataset_val   = file.__dict__[dataset_name].__dict__[dataset_name](opt, mode = "validation")
     dataset_test   = file.__dict__[dataset_name].__dict__[dataset_name](opt, mode = "test")
