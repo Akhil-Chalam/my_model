@@ -6,7 +6,7 @@ from PIL import Image
 import numpy as np
 
 
-class Ade20kDataset(torch.utils.data.Dataset):
+class realistic_render_dataset(torch.utils.data.Dataset):
     def __init__(self, opt, mode):
         if mode == "validation" or mode == "test":
             opt.load_size = 256
