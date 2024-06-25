@@ -4,7 +4,7 @@ from torchvision import transforms as TR
 import os
 from PIL import Image
 import numpy as np
-
+import pdb
 
 class realistic_render_dataset(torch.utils.data.Dataset):
     def __init__(self, opt, mode):
@@ -58,6 +58,7 @@ class realistic_render_dataset(torch.utils.data.Dataset):
                 
 
         for i in range(len(real_list)):
+            pdb.set_trace()
             assert os.path.splitext(real_list[i])[0].split("_")[2] == os.path.splitext(mask_list[i])[0].split("_")[2], '%s and %s are not matching' % (real_list[i], mask_list[i])
             assert os.path.splitext(real_list[i])[0].split("_")[3] == os.path.splitext(mask_list[i])[0].split("_")[3], '%s and %s are not matching' % (real_list[i], mask_list[i])
         return real_list, rendered_list, mask_list (path_real, path_rendered, path_mask)
