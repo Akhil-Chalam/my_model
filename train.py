@@ -21,7 +21,7 @@ im_saver = utils.image_saver(opt)
 fid_computer = fid_pytorch(opt, dataloader_val)
 
 #--- create models ---#
-model = models.OASIS_model(opt)
+model = models.model(opt)
 model = models.put_on_multi_gpus(model, opt)
 
 #--- create optimizers ---#
