@@ -34,7 +34,6 @@ class model(nn.Module):
         # Branching is applied to be compatible with DataParallel
         if mode == "losses_G":
             loss_G = 0
-            pdb.set_trace()
             fake = self.netG(rendered)
             output_D = self.netD(fake)
             loss_G_adv = losses_computer.loss(output_D, mask, for_real=True)

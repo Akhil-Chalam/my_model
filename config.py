@@ -44,7 +44,7 @@ def add_all_arguments(parser, train):
     parser.add_argument('--spade_ks', type=int, default=3, help='kernel size of convs inside SPADE')
     parser.add_argument('--no_EMA', action='store_true', help='if specified, do *not* compute exponential moving averages')
     parser.add_argument('--EMA_decay', type=float, default=0.9999, help='decay in exponential moving averages')
-    parser.add_argument('--no_3dnoise', action='store_true', default=False, help='if specified, do *not* concatenate noise to label maps')
+    parser.add_argument('--no_3dnoise', action='store_true', default=True, help='if specified, do *not* concatenate noise to label maps')
     parser.add_argument('--z_dim', type=int, default=64, help="dimension of the latent z vector")
 
     if train:
