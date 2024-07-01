@@ -19,6 +19,7 @@ class Generator(nn.Module):
         for i in range(len(self.channels)-1):
             self.body.append(ResnetBlock_with_SPADE(self.channels[i], self.channels[i+1], opt))
         if not self.opt.no_3dnoise:
+            pdb.set_trace()
             self.fc = nn.Conv2d(self.opt.semantic_nc + self.opt.z_dim, 16 * ch, 3, padding=1)
         else:
             self.fc = nn.Conv2d(self.opt.semantic_nc, 16 * ch, 3, padding=1)
@@ -39,7 +40,6 @@ class Generator(nn.Module):
             z = z.expand(z.size(0), self.opt.z_dim, seg.size(2), seg.size(3))
             seg = torch.cat((z, seg), dim = 1)
         x = F.interpolate(seg, size=(self.init_W, self.init_H))
-        pdb.set_trace()
         x = self.fc(x)
         for i in range(self.opt.num_res_blocks):
             x = self.body[i](x, seg)
