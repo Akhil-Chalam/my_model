@@ -7,6 +7,7 @@ import data.dataloader as dataloaders
 import utils.utils as utils
 from utils.fid_scores import fid_pytorch
 import config
+import pdb
 
 
 #--- read options ---#
@@ -38,7 +39,8 @@ for epoch in range(start_epoch, opt.num_epochs):
         already_started = True
         cur_iter = epoch*len(dataloader) + i
         real, rendered, mask = models.preprocess_input(opt, data_i)
-
+        pdb.set_trace()
+        
         #--- generator update ---#
         model.module.netG.zero_grad()
         loss_G, losses_G_list = model(real, rendered, mask, "losses_G", losses_computer)
