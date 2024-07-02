@@ -138,7 +138,6 @@ def preprocess_input(opt, data):
         mask = torch.cuda.FloatTensor(bs, 1, h, w).zero_()
     else:
         mask = torch.FloatTensor(bs, 1, h, w).zero_()
-    mask = mask[:,0,:,:]
-    #one_hot_encoded_mask = blank_mask.scatter_(1, mask_map, 1.0)
-    return data['real'], data['rendered'], mask
+    new_mask = mask.scatter_(1, mask_map, 1.0)
+    return data['real'], data['rendered'], new_mask
 
