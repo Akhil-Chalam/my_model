@@ -19,7 +19,6 @@ class Generator(nn.Module):
         for i in range(len(self.channels)-1):
             self.body.append(ResnetBlock_with_SPADE(self.channels[i], self.channels[i+1], opt))
         if not self.opt.no_3dnoise:
-            pdb.set_trace()
             self.fc = nn.Conv2d(self.opt.semantic_nc + self.opt.z_dim, 16 * ch, 3, padding=1)
         else:
             self.fc = nn.Conv2d(self.opt.semantic_nc, 16 * ch, 3, padding=1)
