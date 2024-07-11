@@ -2,11 +2,13 @@ import torch.nn.utils.spectral_norm as spectral_norm
 from models.sync_batchnorm import SynchronizedBatchNorm2d
 import torch.nn as nn
 import torch.nn.functional as F
+import pdb
 
 
 class SPADE(nn.Module):
     def __init__(self, opt, norm_nc, label_nc):
         super().__init__()
+        pdb.set_trace()
         self.first_norm = get_norm_layer(opt, norm_nc)
         ks = opt.spade_ks
         nhidden = 128
