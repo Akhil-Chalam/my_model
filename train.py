@@ -39,6 +39,7 @@ for epoch in range(start_epoch, opt.num_epochs):
         already_started = True
         cur_iter = epoch*len(dataloader) + i
         real, rendered, mask = models.preprocess_input(opt, data_i)
+        pdb.set_trace()
 
         #--- generator update ---#
         model.module.netG.zero_grad()
