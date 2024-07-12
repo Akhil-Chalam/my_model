@@ -20,7 +20,6 @@ class SPADE(nn.Module):
         self.mlp_beta = nn.Conv2d(nhidden, norm_nc, kernel_size=ks, padding=pw)
 
     def forward(self, x, segmap):
-        pdb.set_trace()
         normalized = self.first_norm(x)
         segmap = F.interpolate(segmap, size=x.size()[2:], mode='nearest')
         actv = self.mlp_shared(segmap)

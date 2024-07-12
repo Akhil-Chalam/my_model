@@ -80,6 +80,7 @@ class ResnetBlock_with_SPADE(nn.Module):
             x_s = self.conv_s(self.norm_s(x, seg))
         else:
             x_s = x
+        pdb.set_trace()
         test = self.norm_0(x, seg)
         dx = self.conv_0(self.activ(self.norm_0(x, seg)))
         dx = self.conv_1(self.activ(self.norm_1(dx, seg)))
