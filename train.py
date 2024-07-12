@@ -42,6 +42,7 @@ for epoch in range(start_epoch, opt.num_epochs):
 
         #--- generator update ---#
         model.module.netG.zero_grad()
+        pdb.set_trace()
         loss_G, losses_G_list = model(real, rendered, mask, "losses_G", losses_computer)
         loss_G, losses_G_list = loss_G.mean(), [loss.mean() if loss is not None else None for loss in losses_G_list]
         loss_G.backward()
