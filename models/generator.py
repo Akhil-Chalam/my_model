@@ -45,6 +45,7 @@ class Generator(nn.Module):
         x = F.interpolate(seg, size=(self.init_W, self.init_H))
         x = self.fc(x)
         for i in range(self.opt.num_res_blocks):
+            pdb.set_trace()
             x = self.body[i](x, seg)
             if i < self.opt.num_res_blocks-1:
                 x = self.up(x)
@@ -80,7 +81,6 @@ class ResnetBlock_with_SPADE(nn.Module):
             x_s = self.conv_s(self.norm_s(x, seg))
         else:
             x_s = x
-        pdb.set_trace()
         test = self.norm_0(x, seg)
         dx = self.conv_0(self.activ(self.norm_0(x, seg)))
         dx = self.conv_1(self.activ(self.norm_1(dx, seg)))
