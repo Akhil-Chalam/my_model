@@ -132,6 +132,7 @@ def preprocess_input(opt, data):
         data['mask'] = data['mask'].cuda()
         data['real'] = data['real'].cuda()
         data['rendered'] = data['rendered'].cuda()
+    pdb.set_trace()
     mask_map = data['mask']
     bs, _, h, w = mask_map.size()
     if opt.gpu_ids != "-1":

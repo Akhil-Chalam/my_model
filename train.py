@@ -38,7 +38,6 @@ for epoch in range(start_epoch, opt.num_epochs):
             continue
         already_started = True
         cur_iter = epoch*len(dataloader) + i
-        pdb.set_trace()
         real, rendered, mask = models.preprocess_input(opt, data_i)
 
         #--- generator update ---#
