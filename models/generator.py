@@ -43,9 +43,9 @@ class Generator(nn.Module):
             z = z.expand(z.size(0), self.opt.z_dim, seg.size(2), seg.size(3))
             seg = torch.cat((z, seg), dim = 1)
         x = F.interpolate(seg, size=(self.init_W, self.init_H))
+        pdb.set_trace()
         x = self.fc(x)
         for i in range(self.opt.num_res_blocks):
-            pdb.set_trace()
             x = self.body[i](x, seg)
             if i < self.opt.num_res_blocks-1:
                 x = self.up(x)
