@@ -130,9 +130,6 @@ def preprocess_input(opt, data):
     data['mask'] = data['mask'].long()
     if opt.gpu_ids != "-1":
         data['mask'] = data['mask'].cuda()
-        data['real'] = data['real'].cuda()
-        data['rendered'] = data['rendered'].cuda()
-    pdb.set_trace()
     mask_map = data['mask']
     bs, _, h, w = mask_map.size()
     if opt.gpu_ids != "-1":
@@ -140,5 +137,5 @@ def preprocess_input(opt, data):
     else:
         mask = torch.FloatTensor(bs, 1, h, w).zero_()
     new_mask = mask.scatter_(1, mask_map, 1.0)
-    return data['real'], data['rendered'], new_mask
+    return new_mask
 
