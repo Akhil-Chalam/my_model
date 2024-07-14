@@ -38,8 +38,9 @@ for epoch in range(start_epoch, opt.num_epochs):
             continue
         already_started = True
         cur_iter = epoch*len(dataloader) + i
-        mask = models.preprocess_input(opt, data_i)
+        #mask = models.preprocess_input(opt, data_i)
         real = data_i['real'].cuda() if opt.gpu_ids != "-1" else data_i['real']
+        mask = data_i['real'].cuda() if opt.gpu_ids != "-1" else data_i['mask']
         rendered = data_i['rendered'].cuda() if opt.gpu_ids != "-1" else data_i['rendered']
         pdb.set_trace()
 
