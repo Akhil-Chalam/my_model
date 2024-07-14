@@ -26,13 +26,13 @@ class losses_computer():
 def get_class_balancing(opt, input, label):
     if not opt.no_balancing_inloss:
         class_occurence = torch.sum(label, dim=(0, 2, 3))
-        if opt.contain_dontcare_label:
-            class_occurence[0] = 0
+        # if opt.contain_dontcare_label:
+        #     class_occurence[0] = 0
         num_of_classes = (class_occurence > 0).sum()
         coefficients = torch.reciprocal(class_occurence) * torch.numel(label) / (num_of_classes * label.shape[1])
         integers = torch.argmax(label, dim=1, keepdim=True)
-        if opt.contain_dontcare_label:
-            coefficients[0] = 0
+        # if opt.contain_dontcare_label:
+        #     coefficients[0] = 0
         weight_map = coefficients[integers]
     else:
         weight_map = torch.ones_like(input[:, :, :, :])

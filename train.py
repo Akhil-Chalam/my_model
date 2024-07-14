@@ -42,11 +42,9 @@ for epoch in range(start_epoch, opt.num_epochs):
         real = data_i['real'].cuda() if opt.gpu_ids != "-1" else data_i['real']
         mask = data_i['real'].cuda() if opt.gpu_ids != "-1" else data_i['mask']
         rendered = data_i['rendered'].cuda() if opt.gpu_ids != "-1" else data_i['rendered']
-        pdb.set_trace()
 
         #--- generator update ---#
         model.module.netG.zero_grad()
-        #pdb.set_trace()
         loss_G, losses_G_list = model(real, rendered, mask, "losses_G", losses_computer)
         loss_G, losses_G_list = loss_G.mean(), [loss.mean() if loss is not None else None for loss in losses_G_list]
         loss_G.backward()
