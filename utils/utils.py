@@ -71,7 +71,7 @@ class timer():
 
 class losses_saver():
     def __init__(self, opt):
-        self.name_list = ["Generator", "Vgg", "D_fake", "D_real", "LabelMix"]
+        self.name_list = ["Generator", "Vgg", "D_fake", "D_real"]
         self.opt = opt
         self.freq_smooth_loss = opt.freq_smooth_loss
         self.freq_save_loss = opt.freq_save_loss
