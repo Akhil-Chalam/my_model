@@ -55,11 +55,11 @@ class fid_pytorch():
             netEMA.eval()
         with torch.no_grad():
             for i, data_i in enumerate(self.val_dataloader):
-                image, label = models.preprocess_input(self.opt, data_i)
+                rendered = data_i['rendered'].cuda() if self.opt.gpu_ids != "-1" else data_i['rendered']
                 if self.opt.no_EMA:
-                    generated = netG(label)
+                    generated = netG(rendered)
                 else:
-                    generated = netEMA(label)
+                    generated = netEMA(rendered)
                 generated = (generated + 1) / 2
                 pool_val = self.model_inc(generated.float())[0][:, :, 0, 0]
                 pool += [pool_val]
