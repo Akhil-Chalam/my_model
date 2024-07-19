@@ -28,8 +28,8 @@ class results_saver():
         path = os.path.join(opt.results_dir, opt.name, opt.ckpt_iter)
         self.path_mask = os.path.join(path, "mask")
         self.path_rendered = os.path.join(path, "rendered")
-        self.path_real = os.path.join(path, "real")
-        self.path_to_save = {"real": self.path_real, "rendered": self.path_rendered, "mask": self.path_mask}
+        self.path_real = os.path.join(path, "generated")
+        self.path_to_save = {"generated": self.path_real, "rendered": self.path_rendered, "mask": self.path_mask}
         os.makedirs(self.path_mask, exist_ok=True)
         os.makedirs(self.path_rendered, exist_ok=True)
         os.makedirs(self.path_real, exist_ok=True)
