@@ -15,7 +15,7 @@ _, _, dataloader_test = dataloaders.get_dataloaders(opt)
 image_saver = utils.results_saver(opt)
 
 #--- create models ---#
-model = models.OASIS_model(opt)
+model = models.model(opt)
 model = models.put_on_multi_gpus(model, opt)
 model.eval()
 
