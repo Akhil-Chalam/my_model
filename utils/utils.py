@@ -35,13 +35,13 @@ class results_saver():
         os.makedirs(self.path_real, exist_ok=True)
         self.num_cl = opt.label_nc + 2
 
-    def __call__(self, label, generated, name):
-        assert len(label) == len(generated)
-        for i in range(len(label)):
-            im = tens_to_lab(label[i], self.num_cl)
-            self.save_im(im, "label", name[i])
+    def __call__(self, rendered, generated, name):
+        assert len(rendered) == len(generated)
+        for i in range(len(rendered)):
+            im = tens_to_im(rendered[i])
+            self.save_im(im, "rendered", name[i])
             im = tens_to_im(generated[i]) * 255
-            self.save_im(im, "image", name[i])
+            self.save_im(im, "generated", name[i])
 
     def save_im(self, im, mode, name):
         im = Image.fromarray(im.astype(np.uint8))
