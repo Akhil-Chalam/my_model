@@ -60,9 +60,9 @@ class model(nn.Module):
         if mode == "generate":
             with torch.no_grad():
                 if self.opt.no_EMA:
-                    fake = self.netG(real)
+                    fake = self.netG(rendered)
                 else:
-                    fake = self.netEMA(real)
+                    fake = self.netEMA(rendered)
             return fake
 
     def load_checkpoints(self):

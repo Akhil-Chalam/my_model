@@ -24,5 +24,5 @@ for i, data_i in enumerate(dataloader_test):
     # _, label = models.preprocess_input(opt, data_i)
     rendered = data_i['rendered'].cuda() if opt.gpu_ids != "-1" else data_i['rendered']
     mask = data_i['real'].cuda() if opt.gpu_ids != "-1" else data_i['mask']
-    generated = model(None, rendered, "generate", None)
+    generated = model(None, rendered, mask, "generate", None)
     image_saver(rendered, generated, data_i["name"])
