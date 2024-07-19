@@ -1,6 +1,6 @@
 
 import models.models as models
-import dataloaders.dataloaders as dataloaders
+import data.dataloader as dataloaders
 import utils.utils as utils
 import config
 
