@@ -3,7 +3,7 @@ import torch.nn.functional as F
 import torch.nn as nn
 from models.vggloss import VGG19
 
-class losses_computer(nn.Module):
+class losses_computer():
     def __init__(self, opt):
         self.opt = opt
         self.loss_function = torch.nn.MSELoss()
