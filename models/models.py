@@ -15,7 +15,8 @@ class model(nn.Module):
         super(model, self).__init__()
         self.opt = opt
         #--- generator and discriminator ---
-        self.netG = generators.Generator(opt)
+        #self.netG = generators.Generator(opt)
+        self.netG = generators.define_G
         if opt.phase == "train":
             self.netD = discriminators.Discriminator(opt)
         self.print_parameter_count()
@@ -37,7 +38,8 @@ class model(nn.Module):
             fake = self.netG(rendered)
             output_D = self.netD(fake)
             #loss_G_adv = losses_computer.loss(output_D, mask, for_real=True)
-            loss_G_adv = losses_computer.loss(output_D, real, for_real=True)
+            #loss_G_adv = losses_computer.loss(output_D, real, for_real=True)
+            loss_G_adv = losses_computer.loss(output_D, real, mask, for_real=True)
             loss_G += loss_G_adv
             if self.opt.add_vgg_loss:
                 loss_G_vgg = self.opt.lambda_vgg * self.VGG_loss(fake, real)
@@ -52,10 +54,12 @@ class model(nn.Module):
                 fake = self.netG(rendered)
             output_D_fake = self.netD(fake)
             #loss_D_fake = losses_computer.loss(output_D_fake, mask, for_real=False)
-            loss_D_fake = losses_computer.loss(output_D_fake, real, for_real=False)
+            #loss_D_fake = losses_computer.loss(output_D_fake, real, for_real=False)
+            loss_D_fake = losses_computer.loss(output_D_fake, real, mask, for_real=False)
             loss_D += loss_D_fake
             output_D_real = self.netD(real)
-            loss_D_real = losses_computer.loss(output_D_real, real, for_real=True)
+            #loss_D_real = losses_computer.loss(output_D_real, real, for_real=True)
+            loss_D_real = losses_computer.loss(output_D_real, real, mask, for_real=True)
             loss_D += loss_D_real
             return loss_D, [loss_D_fake, loss_D_real]
 
