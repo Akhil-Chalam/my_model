@@ -2,6 +2,7 @@ import torch
 import torch.nn.functional as F
 import torch.nn as nn
 from models.vggloss import VGG19
+import pdb
 
 class losses_computer():
     def __init__(self, opt):
@@ -15,6 +16,7 @@ class losses_computer():
 
 def get_n1_target(opt, input, label, target_is_real):
     targets = get_target_tensor(opt, input, target_is_real)
+    pdb.set_trace()
     num_of_classes = label.shape[1]
     integers = torch.argmax(label, dim=1)
     targets = targets[:, 0, :, :] * num_of_classes
