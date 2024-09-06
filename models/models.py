@@ -15,8 +15,7 @@ class model(nn.Module):
         super(model, self).__init__()
         self.opt = opt
         #--- generator and discriminator ---
-        #self.netG = generators.Generator(opt)
-        self.netG = generators.define_G
+        self.netG = generators.Generator(opt)
         if opt.phase == "train":
             self.netD = discriminators.Discriminator(opt)
         self.print_parameter_count()
