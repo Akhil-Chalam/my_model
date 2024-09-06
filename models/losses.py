@@ -18,7 +18,7 @@ def get_n1_target(opt, input, label, target_is_real):
     num_of_classes = label.shape[1]
     integers = torch.argmax(label, dim=1)
     targets = targets[:, 0, :, :] * num_of_classes
-    integers += targets.long()
+    integers += targets.float()
     integers = torch.clamp(integers, min=num_of_classes-1) - num_of_classes + 1
     return integers
 
