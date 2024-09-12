@@ -38,6 +38,7 @@ class model(nn.Module):
             output_D = self.netD(fake)
             #loss_G_adv = losses_computer.loss(output_D, mask, for_real=True)
             #loss_G_adv = losses_computer.loss(output_D, real, for_real=True)
+            pdb.set_trace()
             loss_G_adv = losses_computer.loss(output_D, real, mask, for_real=True)
             loss_G += loss_G_adv
             if self.opt.add_vgg_loss:
